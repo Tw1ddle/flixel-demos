@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="::APP_PACKAGE::" android:versionCode="::APP_BUILD_NUMBER::" android:versionName="::APP_VERSION::" android:installLocation="::ANDROID_INSTALL_LOCATION::">
+	
+	<uses-feature android:glEsVersion="0x00020000" android:required="true" />
+	<uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+	
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	
+	<!-- Not sure whether this is really needed -->
+	<uses-permission android:name="android.permission.VIBRATE" />
+	
+	<uses-sdk android:minSdkVersion="::ANDROID_MINIMUM_SDK_VERSION::" android:targetSdkVersion="::ANDROID_TARGET_SDK_VERSION::"/>
+	
+	<!-- Disabling native heap pointer tagging to get around this crash in OpenFL: https://community.openfl.org/t/egl-bad-display-on-android-oneplus-phones/13187 -->
+	<application android:allowNativeHeapPointerTagging="false" android:label="::APP_TITLE::" android:debuggable="::DEBUG::"::if (HAS_ICON):: android:icon="@drawable/icon"::end::>
+	
+		<!-- Set max supported aspect ratio (maybe needed for devices like Samsung Galaxy S8) -->
+		<meta-data android:name="android.max_aspect" android:value="2.5" />
+		
+		<!-- Not sure if this is needed but it's in the lime template -->
+		<meta-data android:name="SDL_ENV.SDL_IOS_ORIENTATIONS" android:value="LandscapeLeft LandscapeRight" />
+
+		<activity android:name="MainActivity" android:exported="true" android:launchMode="singleTask" android:label="::APP_TITLE::" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="sensorLandscape" android:resizeableActivity="false">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+	</application>
+</manifest>
