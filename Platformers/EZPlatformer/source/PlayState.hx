@@ -9,7 +9,6 @@ import flixel.group.FlxGroup;
 import flixel.text.FlxText;
 import flixel.tile.FlxTilemap;
 import flixel.util.FlxColor;
-import entities.environment.SmokeEmitter;
 
 /**
  * @author Zaphod
@@ -24,28 +23,10 @@ class PlayState extends FlxState
 	var _scoreText:FlxText;
 	var _status:FlxText;
 	var _coins:FlxGroup;
-	
-	public static inline var PAVEMENT_Y = 179 * 2;
-	
-	public var lightningSmoke1(default, null):SmokeEmitter;
-	public var lightningSmoke2(default, null):SmokeEmitter;
-	public var lightningSmoke3(default, null):SmokeEmitter;
 
 	override public function create():Void
 	{
-		lightningSmoke1 = new SmokeEmitter();
-		lightningSmoke2 = new SmokeEmitter();
-		lightningSmoke3 = new SmokeEmitter();
-		var center = FlxG.worldBounds.x + FlxG.worldBounds.width / 2;
-		lightningSmoke1.setPosition(center - 320, PAVEMENT_Y + 50);
-		lightningSmoke2.setPosition(center - 120, PAVEMENT_Y + 80);
-		lightningSmoke3.setPosition(center + 160, PAVEMENT_Y + 60);
-		var lightningSmoke = new FlxGroup();
-		lightningSmoke.add(lightningSmoke1);
-		lightningSmoke.add(lightningSmoke2);
-		lightningSmoke.add(lightningSmoke3);
-		
-		//FlxG.mouse.visible = false;
+		FlxG.mouse.visible = false;
 		FlxG.cameras.bgColor = 0xffaaaaaa;
 
 		_level = new FlxTilemap();
@@ -132,15 +113,12 @@ class PlayState extends FlxState
 		}
 
 		add(_status);
-		
-		add(lightningSmoke);
 	}
 
 	override public function update(elapsed:Float):Void
 	{
 		_player.acceleration.x = 0;
 
-		/*
 		if (FlxG.keys.anyPressed([LEFT, A]))
 		{
 			_player.acceleration.x = -_player.maxVelocity.x * 4;
@@ -155,7 +133,6 @@ class PlayState extends FlxState
 		{
 			_player.velocity.y = -_player.maxVelocity.y / 2;
 		}
-		*/
 
 		super.update(elapsed);
 
