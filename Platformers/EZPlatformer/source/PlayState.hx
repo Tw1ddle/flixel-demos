@@ -26,7 +26,7 @@ class PlayState extends FlxState
 
 	override public function create():Void
 	{
-		FlxG.mouse.visible = false;
+		//FlxG.mouse.visible = false;
 		FlxG.cameras.bgColor = 0xffaaaaaa;
 
 		_level = new FlxTilemap();
@@ -119,6 +119,7 @@ class PlayState extends FlxState
 	{
 		_player.acceleration.x = 0;
 
+		/*
 		if (FlxG.keys.anyPressed([LEFT, A]))
 		{
 			_player.acceleration.x = -_player.maxVelocity.x * 4;
@@ -133,6 +134,7 @@ class PlayState extends FlxState
 		{
 			_player.velocity.y = -_player.maxVelocity.y / 2;
 		}
+		*/
 
 		super.update(elapsed);
 
